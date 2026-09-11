@@ -1,0 +1,24 @@
+{
+  "_comment": "完整场景示例：① 按内容做第一次分类 ② 在内容分类下按格式做第二次分类（形成 内容/格式 两级） ③ 按修改时间排序后给图片重命名 ④ 压缩包单独归档到 归档/ ⑤ 其余文件按分类落盘。先用 --dry-run 预览，确认后再 --yes 执行。",
+  "stages": [
+    {"op": "classify", "by": "content"},
+    {"op": "classify", "by": "type", "mode": "append"},
+    {"op": "sort", "by": "mtime", "order": "asc"},
+    {
+      "op": "rename",
+      "template": "{date}_{index:03d}{suffix}",
+      "where": {"field": "category", "op": "endswith", "value": "图片"}
+    },
+    {
+      "op": "move",
+      "rule": "to_path",
+      "target": "归档",
+      "where": {"field": "category", "op": "endswith", "value": "压缩包"}
+    },
+    {
+      "op": "move",
+      "rule": "by_category",
+      "where": {"not": {"field": "category", "op": "endswith", "value": "压缩包"}}
+    }
+  ]
+}

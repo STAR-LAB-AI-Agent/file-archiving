@@ -1,0 +1,74 @@
+# 文件整理规则配置（YAML；亦可用 JSON，见 load_rules）
+# 说明：type_rules / name_rules / content_rules 三个维度由 classify 阶段的 by 参数显式选择，
+#       彼此之间没有自动优先级；每个维度内部按声明顺序匹配，命中第一个主题即返回。
+
+type_rules:
+  # 目标子目录名: [扩展名列表（小写、不含点）]
+  文档:
+    - pdf
+    - doc
+    - docx
+    - txt
+    - md
+  表格:
+    - xls
+    - xlsx
+    - csv
+  演示:
+    - ppt
+    - pptx
+  图片:
+    - jpg
+    - jpeg
+    - png
+    - gif
+    - webp
+    - bmp
+  压缩包:
+    - zip
+    - rar
+    - 7z
+    - tar
+    - gz
+  音频:
+    - mp3
+    - wav
+    - flac
+  视频:
+    - mp4
+    - mkv
+    - mov
+  程序:
+    - py
+    - js
+    - ts
+    - exe
+    - msi
+
+# 未命中任何类型规则的文件归入此处
+default_folder: 其他
+
+# 文件名关键词分类（子串匹配）-> 分类目录名
+name_rules:
+  合同: [合同, 协议, contract]
+  发票: [发票, 报销, invoice]
+  简历: [简历, resume, cv]
+
+# 内容关键词分类（子串匹配，大小写不敏感）-> 分类目录名
+# 【本工具不内置默认内容规则】classify(by=content) 的关键词必须由调用方提供：
+#   - pipeline 的 rules.content_rules，或本文件（--rules 传入）；
+#   - 未提供时会报错，并提示用 discover-rules 让模型从目录内容自动提取。
+content_rules: {}
+# 示例（按需填写）：
+# content_rules:
+#   马克思主义: [马克思, 资本论, 剩余价值, 阶级斗争]
+#   调查报告: [调查, 报告, 工人, 工资]
+
+rename_templates:
+  # 命名模板占位符：{date} {time} {stem} {ext} {index}
+  image: "{date}_{index:03d}"
+  document: "{stem}"
+
+# 目录白名单（示例，可选）
+allowed_roots:
+  - demo

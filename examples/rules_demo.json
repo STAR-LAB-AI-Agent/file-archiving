@@ -1,0 +1,31 @@
+{
+  "_comment": "示例内容分类规则：关键词均取自 demo/ 各文件的实际正文（而非文件名），可直接运行验证。仅用于演示规则格式与按内容分类的效果，请按自己目录的真实内容重写；也可用 `file_organizer discover-rules --path <目录> --output rules.json` 让大模型自动生成。",
+  "content_rules": {
+    "学术论文": [
+      "Google hereby grants permission",
+      "journalistic or scholarly works",
+      "Attention Is All You Need"
+    ],
+    "生物学经典": [
+      "On the Origin of Species",
+      "Natural Selection"
+    ],
+    "文学名著": [
+      "Alice's Adventures in Wonderland",
+      "Project Gutenberg eBook of Alice"
+    ],
+    "演示文稿": [
+      "Presentation Title",
+      "Subtitle Text",
+      "Test text"
+    ],
+    "示例文档": [
+      "python-docx"
+    ],
+    "电子表格": [
+      "Page1_1",
+      "data_Page1_1"
+    ]
+  },
+  "default_folder": "其他"
+}
