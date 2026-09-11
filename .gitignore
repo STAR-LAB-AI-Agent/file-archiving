@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# 测试与覆盖率
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 运行期撤销日志（整理时自动生成）
+.file_organizer/
+
+# 环境与敏感信息（真实 Key 严禁提交）
+.env
+*.key
+*.pem
+
+# IDE / 编辑器
+.idea/
+.vscode/
+*.swp
+
+# 系统 / 临时文件
+.DS_Store
+Thumbs.db

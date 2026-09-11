@@ -1,0 +1,8 @@
+{
+  "stages": [
+    {"op": "filter",   "where": {"field": "extension", "op": "in", "value": ["pdf", "docx", "xlsx", "jpg", "png", "mp4"]}},
+    {"op": "classify", "by": "type"},
+    {"op": "rename",   "template": "{date}_{index:03d}{suffix}", "where": {"field": "category", "op": "eq", "value": "图片"}},
+    {"op": "move",     "rule": "by_category"}
+  ]
+}

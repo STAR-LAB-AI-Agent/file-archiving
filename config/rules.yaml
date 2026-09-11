@@ -1,0 +1,71 @@
+# 文件整理规则配置（YAML；亦可用 JSON，见 load_rules）
+# 规则优先级：类型(type) > 文件名(name) > 内容(content)
+
+type_rules:
+  # 目标子目录名: [扩展名列表（小写、不含点）]
+  文档:
+    - pdf
+    - doc
+    - docx
+    - txt
+    - md
+  表格:
+    - xls
+    - xlsx
+    - csv
+  演示:
+    - ppt
+    - pptx
+  图片:
+    - jpg
+    - jpeg
+    - png
+    - gif
+    - webp
+    - bmp
+  压缩包:
+    - zip
+    - rar
+    - 7z
+    - tar
+    - gz
+  音频:
+    - mp3
+    - wav
+    - flac
+  视频:
+    - mp4
+    - mkv
+    - mov
+  程序:
+    - py
+    - js
+    - ts
+    - exe
+    - msi
+
+# 未命中任何类型规则的文件归入此处
+default_folder: 其他
+
+# 文件名关键词分类（子串匹配）-> 分类目录名
+name_rules:
+  合同: [合同, 协议, contract]
+  发票: [发票, 报销, invoice]
+  简历: [简历, resume, cv]
+
+# 内容关键词分类（子串匹配，大小写不敏感）-> 分类目录名
+# 说明：classify(by=content) 抽取文件文本（默认前 512 字符）后按此匹配；
+#       也可在 pipeline 的 rules.content_rules 中按需覆盖。
+content_rules:
+  合同: [合同, 甲方, 乙方, 协议, contract]
+  发票: [发票, 报销, invoice, receipt, 金额]
+  简历: [简历, 工作经历, 教育背景, resume, cv]
+
+rename_templates:
+  # 命名模板占位符：{date} {time} {stem} {ext} {index}
+  image: "{date}_{index:03d}"
+  document: "{stem}"
+
+# 目录白名单（示例，可选）
+allowed_roots:
+  - demo
